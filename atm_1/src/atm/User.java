@@ -13,6 +13,18 @@ public class User {
 		this.name = name;
 	}
 	
+	public void addAcount(Account account) {
+		accounts.add(account);
+	}
+	
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+	}
+	
+	public Account getAccountByIndex(int index) {
+		return this.accounts.get(index);
+	}
+	
 	public int getCode() {
 		return this.code;
 	}
