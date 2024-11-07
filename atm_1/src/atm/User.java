@@ -36,8 +36,16 @@ public class User {
 		return this.accounts.get(index);
 	}
 	
+	public ArrayList<Account> getAccounts() {
+		return this.accounts;
+	}
+	
 	public boolean isValidPassword(String password) {
 		return this.password.equals(password);
+	}
+	
+	public int getAccountSize() {
+		return this.accounts.size();
 	}
 	
 	public int getCode() {
