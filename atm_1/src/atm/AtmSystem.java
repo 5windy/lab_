@@ -120,8 +120,8 @@ public class AtmSystem {
 	}
 	
 	private void exit() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("시스템이 종료됩니다.");
+		isRun = false;
 	}
 
 	private void closeAccount() {
