@@ -24,6 +24,14 @@ public class Account {
 		return password == this.password;
 	}
 	
+	public void increaseBalance(int money) {
+		this.balance += money;
+	}
+	
+	public void decreaseBalance(int money) {
+		this.balance -= money;
+	}
+	
 	public int getCode() {
 		return this.code;
 	}
@@ -35,9 +43,4 @@ public class Account {
 	public int getBalance() {
 		return this.balance;
 	}
-	
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-
 }
