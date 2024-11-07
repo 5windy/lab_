@@ -85,8 +85,11 @@ public class FileManager {
 	
 
 	public void load() {
-		loadUserFile();
-		loadAccountFile();
+		ArrayList<User> group = loadUserFile();
+		userManager.setGroup(group);
+		
+		ArrayList<Account> list = loadAccountFile();
+		accountManager.setList(list);
 	}
 
 	private ArrayList<User> loadUserFile() {
