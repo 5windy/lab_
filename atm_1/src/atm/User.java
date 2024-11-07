@@ -48,5 +48,14 @@ public class User {
 	public String toString() {
 		return this.code + ") " + this.name;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof User) {
+			User target = (User)obj;
+			return this.code == target.getCode();
+		}
+		return false;
+	}
 
 }
