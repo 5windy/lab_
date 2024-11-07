@@ -36,6 +36,14 @@ public class Account {
 		this.balance -= money;
 	}
 	
+	public String getAccountInfoAsString() {
+		String info = code + "/";
+		info += userCode + "/";
+		info += password + "/";
+		info += balance;
+		return info;
+	}
+	
 	public int getCode() {
 		return this.code;
 	}
