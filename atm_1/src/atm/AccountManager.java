@@ -68,6 +68,14 @@ public class AccountManager {
 		return clone;
 	}
 	
+	public void setList(ArrayList<Account> list) {
+		this.list.clear();
+		for(int i=0; i<list.size(); i++) {
+			Account account = list.get(i);
+			this.list.add(account);
+		}
+	}
+	
 	public boolean removeAccountByCode(int code, int password) {
 		Account target = new Account(code);
 		int index = list.indexOf(target);
