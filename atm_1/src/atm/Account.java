@@ -56,4 +56,12 @@ public class Account {
 		}
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		String info = code + "번 계좌(";
+		info += userCode + ") : ";
+		info += balance + "원";
+		return info;
+	}
 }
