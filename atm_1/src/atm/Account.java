@@ -20,6 +20,10 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	public boolean isValidPassword(int password) {
+		return password == this.password;
+	}
+	
 	public int getCode() {
 		return this.code;
 	}
