@@ -29,7 +29,7 @@ public class AtmSystem {
 	private AccountManager accountManager = AccountManager.getInstance();
 	private FileManager fileManager = FileManager.getInstance();
 	
-//		+ 뱅킹기능(입금,출금,조회,이체,계좌생성,계좌철회)
+//		+ 뱅킹기능(입금,출금,조회,이체)
 //		+ 파일기능(저장,로드)
 	
 //		마지막 커밋 메세지 : 
@@ -121,13 +121,7 @@ public class AtmSystem {
 		// 1. 로그인한 회원의 계좌 목록을 출력 
 		// 2. 철회할 계좌를 선택 받아 
 		// 3. 계좌 철회 
-		User user = userManager.getUserByCode(log);
-		ArrayList<Account> accounts = user.getAccounts();
-		
-		for(int i=0; i<accounts.size(); i++) {
-			Account account = accounts.get(i);
-			System.out.println(account);
-		}
+		printUserAccounts();
 		int accCode = (int)input("철회할 계좌번호", NUMBER);
 		int password = (int)input("계좌 비밀번호", NUMBER);
 		
@@ -135,6 +129,16 @@ public class AtmSystem {
 			System.out.println("계좌철회 완료");
 		else 
 			System.out.println("계좌철회 실패, 계좌 정보를 다시 확인하세요.");
+	}
+	
+	private void printUserAccounts() {
+		User user = userManager.getUserByCode(log);
+		ArrayList<Account> accounts = user.getAccounts();
+		
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			System.out.println("[" + (i+1) + "] " + account);
+		}
 	}
 
 	private void openAccount() {
@@ -157,23 +161,96 @@ public class AtmSystem {
 	}
 
 	private void transfer() {
-		// TODO Auto-generated method stub
+		Account account = getAccountByNumberFromLoginUser();
 		
+		if(account == null)
+			return;
+		
+		int accCode = (int)input("이체할 계좌 번호", NUMBER);
+		Account target = accountManager.getAccountByCode(accCode);
+		
+		if(target == null) {
+			System.out.println("계좌정보가 올바르지 않습니다.");
+			return;
+		}
+		
+		if(target.getUserCode() == log) {
+			System.out.println("본인 계좌로의 이체는 불가합니다.");
+			return;
+		}
+		
+		int money = (int)input("이체할 금액", NUMBER);
+		
+		if(money > account.getBalance() || money < 1) {
+			System.out.println("잔액이 부족합니다.");
+			return;
+		}
+		
+		account.decreaseBalance(money);
+		target.increaseBalance(money);
+		System.out.println("이체 완료");
 	}
 
 	private void balance() {
-		// TODO Auto-generated method stub
+		Account account = getAccountByNumberFromLoginUser();
 		
+		if(account == null)
+			return;
+		
+		System.out.println(account);
 	}
 
 	private void withrawal() {
-		// TODO Auto-generated method stub
+		Account account = getAccountByNumberFromLoginUser();
 		
+		if(account == null)
+			return;
+		
+		int money = (int)input("인출할 금액", NUMBER);
+		
+		if(money > account.getBalance() || money < 1) {
+			System.out.println("잔액이 부족합니다.");
+			return;
+		}
+		
+		account.decreaseBalance(money);
+		System.out.println("인출 완료");
 	}
 
 	private void deposit() {
+		Account account = getAccountByNumberFromLoginUser();
+		
+		if(account == null)
+			return;
+		
+		int money = (int)input("입금할 금액", NUMBER);
+		
+		if(money < 1) {
+			System.out.println("유효하지 않은 금액입니다.");
+			return;
+		}
+		
+		account.increaseBalance(money);
+		System.out.println("입금 완료");
+	}
+	
+	private Account getAccountByNumberFromLoginUser() {
+		Account account = null;
+		
+		User user = userManager.getUserByCode(log);
+		int accSize = user.getAccountSize();
 		
 		
+		printUserAccounts();
+		int index = (int)input("번호 선택", NUMBER) - 1;
+		
+		if(index < 0 || index >= accSize) {
+			System.out.println("유효하지 않은 번호입니다.");
+			return account;
+		}
+		
+		account = user.getAccountByIndex(index);
+		return account;
 	}
 
 	private void logout() {
