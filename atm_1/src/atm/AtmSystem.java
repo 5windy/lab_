@@ -65,6 +65,17 @@ public class AtmSystem {
 	
 	private void load() {
 		fileManager.load();
+		updateUserAccountsAll();
+	}
+	
+	private void updateUserAccountsAll() {
+		ArrayList<User> group = userManager.getGroup();
+		for(int i=0; i<group.size(); i++) {
+			User user = group.get(i);
+			int userCode = user.getCode();
+			ArrayList<Account> accounts = accountManager.getAccountByUserCode(userCode);
+			user.setAccounts(accounts);
+		}
 	}
 	
 	private void runMenu() {
