@@ -47,4 +47,13 @@ public class Account {
 	public int getBalance() {
 		return this.balance;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Account) {
+			Account target = (Account)obj;
+			return this.code == target.getCode();
+		}
+		return false;
+	}
 }
