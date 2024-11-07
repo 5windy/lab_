@@ -204,7 +204,8 @@ public class AtmSystem {
 		if(account == null)
 			return;
 		
-		System.out.println(account);
+		String message = String.format("%d번 계좌의 현재 잔액은 %d원입니다.", account.getCode(), account.getBalance());
+		System.out.println(message);
 	}
 
 	private void withrawal() {
