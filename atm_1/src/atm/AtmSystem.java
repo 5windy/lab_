@@ -333,9 +333,7 @@ public class AtmSystem {
 				return number;
 			} catch (Exception e) {
 				System.err.println("숫자를 입력하세요.");
-			} finally {
-				return null;
-			}
+			} 
 		}
 		return null;
 	}
