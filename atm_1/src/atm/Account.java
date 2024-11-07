@@ -7,6 +7,10 @@ public class Account {
 	private int password;
 	private int balance;
 	
+	public Account(int code) {
+		this.code = code;
+	}
+	
 	public Account(int code, int userCode, int password) {
 		this.code = code;
 		this.userCode = userCode;
