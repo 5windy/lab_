@@ -6,6 +6,7 @@ public class User {
 	
 	private int code;
 	private String name;
+	private String password;
 	private ArrayList<Account> accounts;
 	
 	public User(int code, String name) {
@@ -23,6 +24,10 @@ public class User {
 	
 	public Account getAccountByIndex(int index) {
 		return this.accounts.get(index);
+	}
+	
+	public boolean isValidPassword(String password) {
+		return this.password.equals(password);
 	}
 	
 	public int getCode() {
