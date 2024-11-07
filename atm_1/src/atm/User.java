@@ -7,7 +7,7 @@ public class User {
 	private int code;
 	private String name;
 	private String password;
-	private ArrayList<Account> accounts;
+	private ArrayList<Account> accounts = new ArrayList<>();
 	
 	public User(int code) {
 		this.code = code;
