@@ -1,6 +1,7 @@
 package atm;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class UserManager {
 	
@@ -36,6 +37,16 @@ public class UserManager {
 	
 	private int generateUserCode() {
 		int code = 0;
+		
+		Random random = AtmSystem.random;
+		while(true) {
+			code = random.nextInt(9000) + 1000;
+			User target = new User(code);
+			
+			if(!group.contains(target))
+				break;
+		}
+		
 		return code;
 	}
 	
