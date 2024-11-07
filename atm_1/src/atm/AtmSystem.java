@@ -29,7 +29,6 @@ public class AtmSystem {
 	private AccountManager accountManager = AccountManager.getInstance();
 	private FileManager fileManager = FileManager.getInstance();
 	
-//		- 계좌관리(신청/철회) (1인 3계좌까지)
 //		+ 뱅킹기능(입금,출금,조회,이체,계좌생성,계좌철회)
 //		+ 파일기능(저장,로드)
 	
@@ -63,6 +62,19 @@ public class AtmSystem {
 	
 	private void runMenu() {
 		int select = (int)input("메뉴 선택", NUMBER);
+		
+		if(isLogin()) {
+			if(select == JOIN || select == LOGIN) {
+				System.out.println("로그인 중입니다.");
+				return;
+			}
+		} else {
+			if(select == LEAVE || select == LOGOUT || select == DEPOSIT || select == WITHRAWAL || 
+					select == BALANCE || select == TRANSFER || select == ACC_OPEN || select == ACC_CLOSE) {
+				System.out.println("로그인 후 이용가능합니다.");
+				return;
+			}
+		}
 		
 		switch(select) {
 		case JOIN :
@@ -109,11 +121,6 @@ public class AtmSystem {
 		// 1. 로그인한 회원의 계좌 목록을 출력 
 		// 2. 철회할 계좌를 선택 받아 
 		// 3. 계좌 철회 
-		if(log == -1) {
-			System.out.println("로그인 후 이용가능합니다.");
-			return;
-		}
-		
 		User user = userManager.getUserByCode(log);
 		ArrayList<Account> accounts = user.getAccounts();
 		
@@ -131,11 +138,6 @@ public class AtmSystem {
 	}
 
 	private void openAccount() {
-		if(log == -1) {
-			System.out.println("로그인 후 이용가능합니다.");
-			return;
-		}
-		
 		User user = userManager.getUserByCode(log);
 		int accSize = user.getAccountSize();
 		
@@ -170,16 +172,11 @@ public class AtmSystem {
 	}
 
 	private void deposit() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	private void logout() {
-		if(log == -1) {
-			System.out.println("이미 로그아웃 상태입니다.");
-			return;
-		}
-		
 		log = -1;
 		System.out.println("로그아웃 완료");
 	}
@@ -198,11 +195,6 @@ public class AtmSystem {
 	}
 
 	private void leave() {
-		if(!isLogin()) {
-			System.out.println("로그인 후 이용가능합니다.");
-			return;
-		}
-		
 		String password = (String)input("패스워드", STRING);
 		
 		User user = userManager.getUserByCode(log);
