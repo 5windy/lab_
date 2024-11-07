@@ -33,6 +33,12 @@ public class AtmSystem {
 	
 	private int log = -1;	
 	
+	private String brand;
+	
+	public AtmSystem(String brand) {
+		this.brand = brand;
+	}
+	
 	public void run() {
 		load();
 		while(isRun) {
