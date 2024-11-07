@@ -288,8 +288,10 @@ public class AtmSystem {
 			return;
 		}
 		
-		if(userManager.removeUserByCode(user.getCode(), password))
+		if(userManager.removeUserByCode(user.getCode(), password)) {
 			System.out.println("회원 탈퇴 완료");
+			log = -1;
+		}
 		else
 			System.out.println("비밀번호를 다시 확인하세요.");
 	}
