@@ -44,6 +44,14 @@ public class User {
 		return this.password.equals(password);
 	}
 	
+	public String getUserInfoAsString() {
+		String info = "";
+		info += code + "/";
+		info += name + "/";
+		info += password;
+		return info;
+	}
+	
 	public int getAccountSize() {
 		return this.accounts.size();
 	}
