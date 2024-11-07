@@ -247,6 +247,10 @@ public class AtmSystem {
 		User user = userManager.getUserByCode(log);
 		int accSize = user.getAccountSize();
 		
+		if(accSize == 0) {
+			System.out.println("보유한 계좌가 존재하지 않습니다.");
+			return account;
+		}
 		
 		printUserAccounts();
 		int index = (int)input("번호 선택", NUMBER) - 1;
