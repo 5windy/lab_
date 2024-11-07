@@ -63,6 +63,11 @@ public class AccountManager {
 		return list;
 	}
 	
+	public ArrayList<Account> getList() {
+		ArrayList<Account> clone = (ArrayList<Account>) list.clone();
+		return clone;
+	}
+	
 	public boolean removeAccountByCode(int code, int password) {
 		Account target = new Account(code);
 		int index = list.indexOf(target);
