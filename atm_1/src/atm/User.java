@@ -9,9 +9,15 @@ public class User {
 	private String password;
 	private ArrayList<Account> accounts;
 	
-	public User(int code, String name) {
+	public User(String name, String password) {
+		this.name = name;
+		this.password = password;
+	}
+	
+	public User(int code, String name, String password) {
 		this.code = code;
 		this.name = name;
+		this.password = password;
 	}
 	
 	public void addAcount(Account account) {
