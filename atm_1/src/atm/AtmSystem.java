@@ -29,9 +29,6 @@ public class AtmSystem {
 	private AccountManager accountManager = AccountManager.getInstance();
 	private FileManager fileManager = FileManager.getInstance();
 	
-//		+ 뱅킹기능(입금,출금,조회,이체)
-//		+ 파일기능(저장,로드)
-	
 //		마지막 커밋 메세지 : 
 //		Release v1.0.0 with core features
 	
@@ -40,9 +37,11 @@ public class AtmSystem {
 	private int log = -1;	// userCode
 	
 	public void run() {
+		load();
 		while(isRun) {
 			printMenu();
 			runMenu();
+			save();
 		}
 	}
 	
@@ -58,6 +57,14 @@ public class AtmSystem {
 		System.out.println("9. 계좌개설");
 		System.out.println("10. 계좌철회");
 		System.out.println("0. 종료");
+	}
+	
+	private void save() {
+		fileManager.save();
+	}
+	
+	private void load() {
+		fileManager.load();
 	}
 	
 	private void runMenu() {
