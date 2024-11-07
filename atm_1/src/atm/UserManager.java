@@ -74,6 +74,15 @@ public class UserManager {
 		return group.get(index);
 	}
 	
+	public ArrayList<User> getGroup() {
+		ArrayList<User> clone = new ArrayList<>();
+		for(int i=0; i<group.size(); i++) {
+			User user = group.get(i);
+			clone.add(user);
+		}
+		return clone;
+	}
+	
 	private int indexOf(String name) {
 		for(int i=0; i<group.size(); i++) {
 			User user = group.get(i);
