@@ -1,8 +1,5 @@
 package atm;
 
-// Data Transfer Object
-// ㄴ 데이터 전달 용도의 객체
-
 public class UserRequestDto {
 	
 	private String name;

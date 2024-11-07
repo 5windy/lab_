@@ -29,12 +29,9 @@ public class AtmSystem {
 	private AccountManager accountManager = AccountManager.getInstance();
 	private FileManager fileManager = FileManager.getInstance();
 	
-//		마지막 커밋 메세지 : 
-//		Release v1.0.0 with core features
-	
 	private boolean isRun = true;
 	
-	private int log = -1;	// userCode
+	private int log = -1;	
 	
 	public void run() {
 		load();
@@ -136,9 +133,6 @@ public class AtmSystem {
 	}
 
 	private void closeAccount() {
-		// 1. 로그인한 회원의 계좌 목록을 출력 
-		// 2. 철회할 계좌를 선택 받아 
-		// 3. 계좌 철회 
 		printUserAccounts();
 		int accCode = (int)input("철회할 계좌번호", NUMBER);
 		int password = (int)input("계좌 비밀번호", NUMBER);
@@ -172,8 +166,6 @@ public class AtmSystem {
 		
 		Account account = accountManager.addAccount(log, password);
 		
-		// 이미 accountManager가 가지고 있는 계좌 객체의 
-		// 주소에 바로 접근할 수 있는 목록 관리 
 		user.addAcount(account);
 		System.out.println(account.getCode() + "번 계좌가 개설되었습니다.");
 	}

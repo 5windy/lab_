@@ -15,12 +15,7 @@ public class AccountManager {
 	
 	private ArrayList<Account> list = new ArrayList<>();
 	
-	// Account CRD
-	
 	public Account addAccount(int userCode, int password) {
-		// 1. 유저 조회 후, (시스템)
-		// 2. 잔여 계좌개설 가능 수 확인 (시스템) 
-		// 3. 개좌 개설
 		int code = generateAccountCode();
 		Account account = new Account(code, userCode, password);
 		

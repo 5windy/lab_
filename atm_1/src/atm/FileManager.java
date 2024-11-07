@@ -20,23 +20,16 @@ public class FileManager {
 	private String userFileName = "user.txt";
 	private String accountFileName = "account.txt";
 	
-	// Singleton Pattern 
-	// 1) 생성자를 외부에서 사용하지 못하게 함 (생성자의 접근 제어자를 public -> private)
 	private FileManager() {
 		
 	}
-	// 2) 단일 인스턴스 만들기 (생성자 호출 <- 클래스 내부에서만 가능)
 	private static FileManager instance = new FileManager();
-	// 3) 단일 인스턴스에 접근할 수 있도록 public getter를 제공 
 	public static FileManager getInstance() {
 		return instance;
 	}
 	
-	// 저장과 로드
 	public void save() {
-		// 1. 유저정보 
 		saveUserData();
-		// 2. 계좌정보
 		saveAccountData();
 	}
 	

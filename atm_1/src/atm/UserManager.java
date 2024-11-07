@@ -15,12 +15,7 @@ public class UserManager {
 	
 	private ArrayList<User> group = new ArrayList<>();
 
-	// 회원에 대한 CRD 기능
-	
 	public boolean addUser(UserRequestDto reqUser) {
-		// 1) 요청단에서 넘어온 유저 객체(name, password)
-		// 2) 랜덤 식별 코드를 발행하여 -> group에 추가
-		
 		int code = generateUserCode();
 		String name = reqUser.getName();
 		
