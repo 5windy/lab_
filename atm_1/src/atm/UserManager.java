@@ -55,7 +55,7 @@ public class UserManager {
 		return index != -1;
 	}
 	
-	private User getUserByCode(int code) {
+	public User getUserByCode(int code) {
 		User target = new User(code);
 		int index = group.indexOf(target);
 		
@@ -65,7 +65,7 @@ public class UserManager {
 		return group.get(index);
 	}
 	
-	private User getUserByName(String name) {
+	public User getUserByName(String name) {
 		int index = indexOf(name);
 		
 		if(index == -1)
@@ -83,7 +83,7 @@ public class UserManager {
 		return -1;
 	}
 	
-	private boolean removeUserByCode(int code, String password) {
+	public boolean removeUserByCode(int code, String password) {
 		User target = new User(code);
 		int index = group.indexOf(target);
 		
@@ -98,7 +98,7 @@ public class UserManager {
 		return true;
 	}
 	
-	private boolean removeUserByName(String name, String password) {
+	public boolean removeUserByName(String name, String password) {
 		int index = indexOf(name);
 		
 		if(index == -1)
