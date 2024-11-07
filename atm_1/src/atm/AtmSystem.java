@@ -1,5 +1,6 @@
 package atm;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class AtmSystem {
 	private final int TRANSFER = 8;
 	private final int ACC_OPEN = 9;
 	private final int ACC_CLOSE = 10;
+	private final int ACC_LIMIT = 3;
 	private final int EXIT = 0;
 	
 	private final int STRING = 1;
@@ -27,8 +29,6 @@ public class AtmSystem {
 	private AccountManager accountManager = AccountManager.getInstance();
 	private FileManager fileManager = FileManager.getInstance();
 	
-//		- 회원관리(가입/탈퇴)
-//		- 로그인
 //		- 계좌관리(신청/철회) (1인 3계좌까지)
 //		+ 뱅킹기능(입금,출금,조회,이체,계좌생성,계좌철회)
 //		+ 파일기능(저장,로드)
@@ -106,13 +106,52 @@ public class AtmSystem {
 	}
 
 	private void closeAccount() {
-		// TODO Auto-generated method stub
+		// 1. 로그인한 회원의 계좌 목록을 출력 
+		// 2. 철회할 계좌를 선택 받아 
+		// 3. 계좌 철회 
+		if(log == -1) {
+			System.out.println("로그인 후 이용가능합니다.");
+			return;
+		}
 		
+		User user = userManager.getUserByCode(log);
+		ArrayList<Account> accounts = user.getAccounts();
+		
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			System.out.println(account);
+		}
+		int accCode = (int)input("철회할 계좌번호", NUMBER);
+		int password = (int)input("계좌 비밀번호", NUMBER);
+		
+		if(accountManager.removeAccountByCode(accCode, password))
+			System.out.println("계좌철회 완료");
+		else 
+			System.out.println("계좌철회 실패, 계좌 정보를 다시 확인하세요.");
 	}
 
 	private void openAccount() {
-		// TODO Auto-generated method stub
+		if(log == -1) {
+			System.out.println("로그인 후 이용가능합니다.");
+			return;
+		}
 		
+		User user = userManager.getUserByCode(log);
+		int accSize = user.getAccountSize();
+		
+		if(accSize == ACC_LIMIT) {
+			System.err.println("최대 계좌개설 가능 개수를 초과할 수 없습니다.");
+			return;
+		}
+		
+		int password = (int)input("계좌 비밀번호 (숫자)", NUMBER);
+		
+		Account account = accountManager.addAccount(log, password);
+		
+		// 이미 accountManager가 가지고 있는 계좌 객체의 
+		// 주소에 바로 접근할 수 있는 목록 관리 
+		user.addAcount(account);
+		System.out.println(account.getCode() + "번 계좌가 개설되었습니다.");
 	}
 
 	private void transfer() {
