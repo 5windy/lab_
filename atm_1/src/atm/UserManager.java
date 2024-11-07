@@ -83,24 +83,32 @@ public class UserManager {
 		return -1;
 	}
 	
-	private boolean removeUserByCode(int code) {
+	private boolean removeUserByCode(int code, String password) {
 		User target = new User(code);
 		int index = group.indexOf(target);
 		
 		if(index == -1)
 			return false;
 		
-		group.remove(index);
+		User user = group.get(index);
+		if(!user.isValidPassword(password))
+			return false;
+		
+		group.remove(user);
 		return true;
 	}
 	
-	private boolean removeUserByName(String name) {
+	private boolean removeUserByName(String name, String password) {
 		int index = indexOf(name);
 		
 		if(index == -1)
 			return false;
 		
-		group.remove(index);
+		User user = group.get(index);
+		if(!user.isValidPassword(password))
+			return false;
+		
+		group.remove(user);
 		return true;
 	}
 	
