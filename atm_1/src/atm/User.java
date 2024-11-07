@@ -9,6 +9,10 @@ public class User {
 	private String password;
 	private ArrayList<Account> accounts;
 	
+	public User(int code) {
+		this.code = code;
+	}
+	
 	public User(String name, String password) {
 		this.name = name;
 		this.password = password;
