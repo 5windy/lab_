@@ -40,6 +40,14 @@ public class User {
 		return this.accounts;
 	}
 	
+	public void setAccounts(ArrayList<Account> accounts) {
+		this.accounts.clear();
+		for(int i=0; i<accounts.size(); i++) {
+			Account account = accounts.get(i);
+			this.accounts.add(account);
+		}
+	}
+	
 	public boolean isValidPassword(String password) {
 		return this.password.equals(password);
 	}
